@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="#" />
+    <style>
+      body {
+        background-color: rgb(135, 37, 95);
+        margin-top: 0px;
+      }
+
+      .wrapper,
+      html,
+      body {
+        height: 100%;
+        font-family: sans-serif;
+      }
+      .wrapper {
+        background-color: white;
+        padding: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      h1 {
+        margin-bottom: 1px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+      }
+
+      th {
+        background-color: rgb(254, 207, 234);
+      }
+
+      tr:nth-child(even) {
+        background-color: rgb(248, 248, 248);
+      }
+    </style>
+    <script type="text/javascript">
+      function task1() {
+        var xhttp = new XMLHttpRequest();
+        var table = document.getElementById('task1');
+
+        xhttp.open('GET', 'http://localhost:9090/task/1', true);
+        xhttp.send();
+        xhttp.onreadystatechange = function() {
+          var DONE = 4;
+          var OK = 200;
+          if (xhttp.readyState === DONE) {
+            if (xhttp.status === OK) {
+              var responseAsObject = JSON.parse(xhttp.responseText);
+              responseAsObject.map((item, index) => {
+                var NewRow = table.insertRow(index + 1);
+                var Newcell1 = NewRow.insertCell(0);
+                var Newcell2 = NewRow.insertCell(1);
+                var Newcell3 = NewRow.insertCell(2);
+                var Newcell4 = NewRow.insertCell(3);
+                var Newcell5 = NewRow.insertCell(4);
+                var Newcell6 = NewRow.insertCell(5);
+
+                Newcell1.innerHTML = item.CustomerId;
+                Newcell2.innerHTML = item.FirstName;
+                Newcell3.innerHTML = item.LastName;
+                Newcell4.innerHTML = item.PhoneNumber;
+                Newcell5.innerHTML = item.PhoneType;
+                Newcell6.innerHTML = item.PhoneId;
+              });
+            } else {
+              console.log('Error: ' + xhttp.status);
+            }
+          }
+        };
+      }
+      function task2() {
+        var xhttp = new XMLHttpRequest();
+        var table = document.getElementById('task2');
+
+        xhttp.open('GET', 'http://localhost:9090/task/2', true);
+        xhttp.send();
+        xhttp.onreadystatechange = function() {
+          var DONE = 4;
+          var OK = 200;
+
+          if (xhttp.readyState === DONE) {
+            if (xhttp.status === OK) {
+              var responseAsObject = JSON.parse(xhttp.responseText);
+              responseAsObject.map((item, index) => {
+                var NewRow = table.insertRow(index + 1);
+                var Newcell1 = NewRow.insertCell(0);
+                var Newcell2 = NewRow.insertCell(1);
+                var Newcell3 = NewRow.insertCell(2);
+                var Newcell4 = NewRow.insertCell(3);
+                var Newcell5 = NewRow.insertCell(4);
+                var Newcell6 = NewRow.insertCell(5);
+
+                Newcell1.innerHTML = item.CarId;
+                Newcell2.innerHTML = item.RegistrationNumber;
+                Newcell3.innerHTML = item.ModelName;
+                Newcell4.innerHTML = item.CarType;
+                Newcell5.innerHTML = item.Color;
+                Newcell6.innerHTML = item.Milage;
+              });
+            } else {
+              console.log('Error: ' + xhttp.status);
+            }
+          }
+        };
+      }
+      function onStart() {
+        task1();
+        task2();
+      }
+    </script>
+  </head>
+  <body onload="onStart()">
+    <div class="wrapper">
+      <h1>Vizzit - Full Stack Assignment</h1>
+      <p>
+        Erik Westerberg <br /><a href="mailto:erikwesterberg92@gmail.com"
+          >erikwesterberg92@gmail.com</a
+        >
+        <br />
+        0735184269
+      </p>
+      <p>
+        <b>Task 1:</b> Customers with two or more phone numbers and
+        <u>at least</u> one cellphone.
+      </p>
+      <table id="task1">
+        <tr>
+          <th>Customer Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone Number</th>
+          <th>Phone Type</th>
+          <th>Phone Id</th>
+        </tr>
+      </table>
+
+      <p>
+        <b>Task 2:</b> Blue cars that were not leased between 2013-03-11 and
+        2013-03-20.
+      </p>
+      <table id="task2">
+        <tr>
+          <th>Car Id</th>
+          <th>Registration Number</th>
+          <th>Model Name</th>
+          <th>Car Type</th>
+          <th>Color</th>
+          <th>Milage</th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
